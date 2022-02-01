@@ -183,6 +183,10 @@ make install
 cp ./libcma.so.64 /miniconda3/lib 
 cp ./libxlnk_cma.h /miniconda3/include
 
+# Hack to fix the glog issue (TODO: improve this)
+cp -r /usr/include/glog /miniconda3/include/
+cp -r /usr/include/gflags /miniconda3/include/
+
 # Setting up the flags and runtime env
 echo "export LDFLAGS=\"$LDFLAGS -L/usr/lib/aarch64-linux-gnu\"" > /etc/profile.d/conda_env.sh
 echo "export BOARD=KV260" >> /etc/profile.d/conda_env.sh
