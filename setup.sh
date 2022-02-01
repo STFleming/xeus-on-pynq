@@ -12,6 +12,14 @@ mamba install -y -c conda-forge xeus-cling
 # Some mamba packages for dpu_pynq
 mamba install -y -c conda-forge opencv
 
+
+# Wait for Ubuntu to finish unattended upgrades
+while [[ $(lsof -w /var/lib/dpkg/lock-frontend) ]]
+do
+  echo -e "${YELLOW}Waiting for Ubuntu unattended upgrades to finish${NC}"
+  sleep 20s
+done
+
 apt-get install -y python3-cffi libssl-dev libcurl4-openssl-dev \
   portaudio19-dev libcairo2-dev libdrm-dev libopencv-dev python3-opencv graphviz i2c-tools \
   fswebcam
