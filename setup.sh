@@ -227,6 +227,10 @@ popd
 #Install DPU-PYNQ
 yes Y | apt remove --purge vitis-ai-runtime
 /miniconda3/bin/python3 -m pip install pynq-dpu --no-use-pep517
+cp -r /usr/lib/python3/site-packages/vaitrace_py /miniconda3/lib/python3.8/site-packages/ 
+cp /usr/lib/python3/site-packages/vart.so /miniconda3/lib/python3.8/site-packages/
+cp /usr/lib/python3/dist-packages/xir.cpython-38-aarch64-linux-gnu.so /miniconda3/lib/python3.8/site-packages/
+cp /usr/lib/python3/dist-packages/cv2.cpython-38-aarch64-linux-gnu.so /miniconda3/lib/python3.8/site-packages/
 
 # Get the notebooks
 yes Y | pynq-get-notebooks -p /home/ubuntu/jupyter_notebooks -f
