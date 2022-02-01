@@ -5,7 +5,7 @@
 
 # Check that the user is root
 
-cd ~/
+cd /root/
 
 mamba install -y -c conda-forge xeus-cling
 
@@ -163,6 +163,9 @@ mkdir -p $PYNQ_JUPYTER_NOTEBOOKS
 # Get PYNQ
 git clone https://github.com/Xilinx/PYNQ.git -b image_v2.7 --depth 1 pynq
 
+# Get the KV260 repo
+git clone https://github.com/Xilinx/Kria-PYNQ.git 
+
 # Get the libcma
 cd /root/pynq/sdbuild/packages/libsds/libcma
 make -t
@@ -174,6 +177,19 @@ cp ./libxlnk_cma.h /miniconda3/include
 echo "export LDFLAGS=\"$LDFLAGS -L/usr/lib/aarch64-linux-gnu\"" > /etc/profile.d/conda_env.sh
 echo "export BOARD=KV260" >> /etc/profile.d/conda_env.sh
 echo "export XILINX_XRT=/usr" >> /etc/profile.d/conda_env.sh
+
+# define the name of the platform
+echo "KV260" > /etc/xocl.txt
+
+# compile the pynq device tree overlay and insert it by default
+cd /root/Kria-PYNQ
+pushd dts/
+make
+mkdir -p /usr/local/share/pynq-dts/
+cp insert_dtbo.py pynq.dtbo /usr/local/share/pynq-dts
+echo "/miniconda3/bin/python3 /usr/local/share/pynq-dts/insert_dtbo.py" >> /etc/profile.d/conda_env.sh
+source /etc/profile.d/conda_env.sh
+popd
 
 
 echo "source /etc/profile.d/conda_env.sh" >> /root/.bashrc
