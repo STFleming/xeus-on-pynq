@@ -10,7 +10,6 @@ cd /root/
 mamba install -y -c conda-forge xeus-cling
 
 # Some mamba packages for dpu_pynq
-mamba install -y -c conda-forge glog
 mamba install -y -c conda-forge opencv
 
 apt-get install -y python3-cffi libssl-dev libcurl4-openssl-dev \
@@ -249,7 +248,7 @@ cp -r /usr/include/vart/ /miniconda3/include
 cp -r /usr/include/xir/ /miniconda3/include
 cp -r /usr/include/UniLog /miniconda3/include
 cp /usr/lib/python3/dist-packages/xir.cpython-38-aarch64-linux-gnu.so /miniconda3/lib/python3.8/site-packages/
-cp /usr/lib/python3/dist-packages/cv2.cpython-38-aarch64-linux-gnu.so /miniconda3/lib/python3.8/site-packages/
+#cp /usr/lib/python3/dist-packages/cv2.cpython-38-aarch64-linux-gnu.so /miniconda3/lib/python3.8/site-packages/
 
 # Get the notebooks
 yes Y | pynq-get-notebooks -p /home/ubuntu/jupyter_notebooks -f
