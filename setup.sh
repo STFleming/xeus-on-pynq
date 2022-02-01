@@ -192,6 +192,18 @@ echo "export XILINX_XRT=/usr" >> /etc/profile.d/conda_env.sh
 # define the name of the platform
 echo "KV260" > /etc/xocl.txt
 
+echo "source /etc/profile.d/conda_env.sh" >> /root/.bashrc
+source /etc/profile.d/conda_env.sh
+
+cp -r /usr/include/xf86drm* /miniconda3/include/
+cp -r /lib/xfsprogs /miniconda3/lib
+cp -r /lib/xrt/ /miniconda3/lib
+
+mamba install -y -c conda-forge boost-cpp
+
+# install pynq
+/miniconda3/bin/python -m pip install pynq
+
 # Install the base overlay
 cd /root/Kria-PYNQ
 /miniconda3/bin/python3 -m pip install .
@@ -205,19 +217,6 @@ cp insert_dtbo.py pynq.dtbo /usr/local/share/pynq-dts
 echo "/miniconda3/bin/python3 /usr/local/share/pynq-dts/insert_dtbo.py" >> /etc/profile.d/conda_env.sh
 source /etc/profile.d/conda_env.sh
 popd
-
-
-echo "source /etc/profile.d/conda_env.sh" >> /root/.bashrc
-source /etc/profile.d/conda_env.sh
-
-cp -r /usr/include/xf86drm* /miniconda3/include/
-cp -r /lib/xfsprogs /miniconda3/lib
-cp -r /lib/xrt/ /miniconda3/lib
-
-mamba install -y -c conda-forge boost-cpp
-
-# install pynq
-/miniconda3/bin/python -m pip install pynq
 
 # Get the PYNQ Binaries
 pushd /tmp
