@@ -188,6 +188,9 @@ cp ./libxlnk_cma.h /miniconda3/include
 echo "export LDFLAGS=\"$LDFLAGS -L/usr/lib/aarch64-linux-gnu\"" > /etc/profile.d/conda_env.sh
 echo "export BOARD=KV260" >> /etc/profile.d/conda_env.sh
 echo "export XILINX_XRT=/usr" >> /etc/profile.d/conda_env.sh
+export XILINX_XRT=/usr
+export BOARD=KV260
+export PYNQ_JUPYTER_NOTEBOOKS=/home/ubuntu/jupyter_notebooks
 
 # define the name of the platform
 echo "KV260" > /etc/xocl.txt
