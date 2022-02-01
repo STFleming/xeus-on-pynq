@@ -9,6 +9,10 @@ cd /root/
 
 mamba install -y -c conda-forge xeus-cling
 
+# Some mamba packages for dpu_pynq
+mamba install -y -c conda-forge glog
+mamba install -y -c conda-forge opencv
+
 apt-get install -y python3-cffi libssl-dev libcurl4-openssl-dev \
   portaudio19-dev libcairo2-dev libdrm-dev libopencv-dev python3-opencv graphviz i2c-tools \
   fswebcam
@@ -191,6 +195,9 @@ echo "/miniconda3/bin/python3 /usr/local/share/pynq-dts/insert_dtbo.py" >> /etc/
 source /etc/profile.d/conda_env.sh
 popd
 
+# Install the base overlay
+cd /root/Kria-PYNQ
+/miniconda3/bin/python3 -m pip install .
 
 echo "source /etc/profile.d/conda_env.sh" >> /root/.bashrc
 source /etc/profile.d/conda_env.sh
@@ -220,7 +227,6 @@ cp pynq-v2.7-binaries/xrt/xclbinutil /miniconda3/bin/
 chmod +x /miniconda3/bin/xclbinutil
 popd
 
-
 #Install PYNQ-HelloWorld
 /miniconda3/bin/python3 -m pip install pynq-helloworld
 
@@ -229,6 +235,9 @@ yes Y | apt remove --purge vitis-ai-runtime
 /miniconda3/bin/python3 -m pip install pynq-dpu --no-use-pep517
 cp -r /usr/lib/python3/site-packages/vaitrace_py /miniconda3/lib/python3.8/site-packages/ 
 cp /usr/lib/python3/site-packages/vart.so /miniconda3/lib/python3.8/site-packages/
+cp -r /usr/include/vart/ /miniconda3/include
+cp -r /usr/include/xir/ /miniconda3/include
+cp -r /usr/include/UniLog /miniconda3/include
 cp /usr/lib/python3/dist-packages/xir.cpython-38-aarch64-linux-gnu.so /miniconda3/lib/python3.8/site-packages/
 cp /usr/lib/python3/dist-packages/cv2.cpython-38-aarch64-linux-gnu.so /miniconda3/lib/python3.8/site-packages/
 
