@@ -90,7 +90,6 @@ patsy==0.5.1
 pbr==5.6.0
 pexpect==4.8.0
 pip==21.2.1
-pkg_resources==0.0.0
 plotly==5.1.0
 prometheus-client==0.10.1
 prompt-toolkit==3.0.18
@@ -146,8 +145,16 @@ export PYNQ_JUPYTER_NOTEBOOKS=/home/ubuntu/jupyter_notebooks
 export NODE_OPTIONS=--max-old-space-size=4096
 
 wget https://deb.nodesource.com/node_12.x/pool/main/n/nodejs/nodejs_12.22.6-deb-1nodesource1_arm64.deb
+# Wait for Ubuntu to finish unattended upgrades
+while [[ $(lsof -w /var/lib/dpkg/lock-frontend) ]]
+do
+  echo -e "${YELLOW}Waiting for Ubuntu unattended upgrades to finish${NC}"
+  sleep 20s
+done
+
 dpkg -i *.deb
 rm -rf *.deb
+
 
 jupyter notebook --generate-config --allow-root
 
