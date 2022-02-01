@@ -192,6 +192,10 @@ echo "export XILINX_XRT=/usr" >> /etc/profile.d/conda_env.sh
 # define the name of the platform
 echo "KV260" > /etc/xocl.txt
 
+# Install the base overlay
+cd /root/Kria-PYNQ
+/miniconda3/bin/python3 -m pip install .
+
 # compile the pynq device tree overlay and insert it by default
 cd /root/Kria-PYNQ
 pushd dts/
@@ -202,9 +206,6 @@ echo "/miniconda3/bin/python3 /usr/local/share/pynq-dts/insert_dtbo.py" >> /etc/
 source /etc/profile.d/conda_env.sh
 popd
 
-# Install the base overlay
-cd /root/Kria-PYNQ
-/miniconda3/bin/python3 -m pip install .
 
 echo "source /etc/profile.d/conda_env.sh" >> /root/.bashrc
 source /etc/profile.d/conda_env.sh
@@ -250,6 +251,4 @@ cp /usr/lib/python3/dist-packages/cv2.cpython-38-aarch64-linux-gnu.so /miniconda
 
 # Get the notebooks
 yes Y | pynq-get-notebooks -p /home/ubuntu/jupyter_notebooks -f
-
-
 
