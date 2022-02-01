@@ -191,9 +191,6 @@ make install
 cp ./libcma.so.64 /miniconda3/lib 
 cp ./libxlnk_cma.h /miniconda3/include
 
-# Hack to fix the glog issue (TODO: improve this)
-cp -r /usr/include/glog /miniconda3/include/
-cp -r /usr/include/gflags /miniconda3/include/
 
 # Setting up the flags and runtime env
 echo "export LDFLAGS=\"$LDFLAGS -L/usr/lib/aarch64-linux-gnu\"" > /etc/profile.d/conda_env.sh
@@ -259,8 +256,10 @@ cp /usr/lib/python3/site-packages/vart.so /miniconda3/lib/python3.8/site-package
 cp -r /usr/include/vart/ /miniconda3/include
 cp -r /usr/include/xir/ /miniconda3/include
 cp -r /usr/include/UniLog /miniconda3/include
+# Hack to fix the glog issue (TODO: improve this)
+cp -r /usr/include/glog /miniconda3/include/
+cp -r /usr/include/gflags /miniconda3/include/
 cp /usr/lib/python3/dist-packages/xir.cpython-38-aarch64-linux-gnu.so /miniconda3/lib/python3.8/site-packages/
-#cp /usr/lib/python3/dist-packages/cv2.cpython-38-aarch64-linux-gnu.so /miniconda3/lib/python3.8/site-packages/
 
 # Get the notebooks
 yes Y | pynq-get-notebooks -p /home/ubuntu/jupyter_notebooks -f
