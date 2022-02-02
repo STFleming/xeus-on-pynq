@@ -193,9 +193,9 @@ cp ./libxlnk_cma.h /miniconda3/include
 
 
 # Setting up the flags and runtime env
-echo "export LDFLAGS=\"$LDFLAGS -L/usr/lib/aarch64-linux-gnu\"" > /etc/profile.d/conda_env.sh
-echo "export BOARD=KV260" >> /etc/profile.d/conda_env.sh
-echo "export XILINX_XRT=/usr" >> /etc/profile.d/conda_env.sh
+echo "export LDFLAGS=\"$LDFLAGS -L/usr/lib/aarch64-linux-gnu\"" > /root/.conda_env.sh
+echo "export BOARD=KV260" >> /root/.conda_env.sh
+echo "export XILINX_XRT=/usr" >> /root/.conda_env.sh
 export XILINX_XRT=/usr
 export BOARD=KV260
 export PYNQ_JUPYTER_NOTEBOOKS=/home/ubuntu/jupyter_notebooks
@@ -203,8 +203,8 @@ export PYNQ_JUPYTER_NOTEBOOKS=/home/ubuntu/jupyter_notebooks
 # define the name of the platform
 echo "KV260" > /etc/xocl.txt
 
-echo "source /etc/profile.d/conda_env.sh" >> /root/.bashrc
-source /etc/profile.d/conda_env.sh
+echo "source /root/.conda_env.sh" >> /root/.bashrc
+source /root/.conda_env.sh
 
 cp -r /usr/include/xf86drm* /miniconda3/include/
 cp -r /lib/xfsprogs /miniconda3/lib
@@ -225,8 +225,8 @@ pushd dts/
 make
 mkdir -p /usr/local/share/pynq-dts/
 cp insert_dtbo.py pynq.dtbo /usr/local/share/pynq-dts
-echo "/miniconda3/bin/python3 /usr/local/share/pynq-dts/insert_dtbo.py" >> /etc/profile.d/conda_env.sh
-source /etc/profile.d/conda_env.sh
+echo "/miniconda3/bin/python3 /usr/local/share/pynq-dts/insert_dtbo.py" >> /root/.conda_env.sh
+source /root/.conda_env.sh
 popd
 
 # Get the PYNQ Binaries
