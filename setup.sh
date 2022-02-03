@@ -265,5 +265,11 @@ cp /usr/lib/python3/dist-packages/xir.cpython-38-aarch64-linux-gnu.so /miniconda
 yes Y | pynq-get-notebooks -p /home/ubuntu/jupyter_notebooks -f
 
 # Add the C++ stuff to the notebooks
+mkdir -p /home/ubuntu/jupyter_notebooks/pynq-dpu/cpp_demo
+wget https://raw.githubusercontent.com/STFleming/xeus-on-pynq/main/dpu_cling.h -P /home/ubuntu/jupyter_notebooks/pynq-dpu/cpp_demo/
+wget https://raw.githubusercontent.com/STFleming/xeus-on-pynq/main/common.h -P /home/ubuntu/jupyter_notebooks/pynq-dpu/cpp_demo/
+wget https://raw.githubusercontent.com/STFleming/xeus-on-pynq/main/overlay_setup.ipynb -P /home/ubuntu/jupyter_notebooks/pynq-dpu/cpp_demo/
+wget https://raw.githubusercontent.com/STFleming/xeus-on-pynq/main/xeus_cling_dpu_example.ipynb -P /home/ubuntu/jupyter_notebooks/pynq-dpu/cpp_demo/
+cp -r /home/ubuntu/jupyter_notebooks/pynq-dpu/img /home/ubuntu/jupyter_notebooks/pynq-dpu/cpp_demo/img
 
 
