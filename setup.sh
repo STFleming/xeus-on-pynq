@@ -264,3 +264,6 @@ cp /usr/lib/python3/dist-packages/xir.cpython-38-aarch64-linux-gnu.so /miniconda
 # Get the notebooks
 yes Y | pynq-get-notebooks -p /home/ubuntu/jupyter_notebooks -f
 
+# Add the C++ stuff to the notebooks
+
+
